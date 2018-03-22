@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Radium from "radium"; 
+import Radium, { StyleRoot } from "radium";
 import './App.css';
 import Person from "./Person/Person";
 
@@ -10,9 +10,9 @@ class App extends Component {
       { id: "lkdjfldsjc", name: "Ivona", age: 25 },
       { id: "skdcjois", name: "Kenan", age: 25 },
       { id: "guorndslk", name: "Mirjana", age: 48 },
-      { id: "cesoid", name: "Stela", age: 25},
-      {id: "csoidf", name: "Aida", age: 21}
-    ],  
+      { id: "cesoid", name: "Stela", age: 25 },
+      { id: "csoidf", name: "Aida", age: 21 }
+    ],
     showPersons: false
   }
 
@@ -80,14 +80,15 @@ class App extends Component {
     }
 
     let classes = [];
-    if (this.state.persons.length <= 2){
+    if (this.state.persons.length <= 2) {
       classes.push("red");
-    } 
-    if (this.state.persons.length <= 1){
+    }
+    if (this.state.persons.length <= 1) {
       classes.push("bold");
     }
 
     return (
+      <StyleRoot>
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p className={classes.join(" ")}>This is really working!</p>
@@ -98,6 +99,7 @@ class App extends Component {
         </button>
         {persons}
       </div>
+      </StyleRoot>
     );
   }
 }

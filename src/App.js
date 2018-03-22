@@ -5,9 +5,9 @@ import Person from "./Person/Person";
 class App extends Component {
   state = {
     persons: [
-      { name: "Ivona", age: 25 },
-      { name: "Kenan", age: 25 },
-      { name: "Mirjana", age: 48 }
+      { id: 1, name: "Ivona", age: 25 },
+      { id: 2, name: "Kenan", age: 25 },
+      { id: 3, name: "Mirjana", age: 48 }
     ],
     otherState: "some other value",
     showPersons: false
@@ -23,9 +23,9 @@ class App extends Component {
     })
   }
 
-  deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
-    persons.splice(personIndex,1);
+  deletePersonHandler = (personIndex) => {   
+    const persons = [...this.state.persons];
+    persons.splice(personIndex, 1);
     this.setState({
       persons: persons
     });
@@ -33,7 +33,7 @@ class App extends Component {
 
   togglePersonsHandler = (event) => {
     const doesShow = this.state.showPersons;
-    this.setState({showPersons: !doesShow});  
+    this.setState({ showPersons: !doesShow });
   }
 
   render() {
@@ -50,16 +50,16 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map((person, index) => {
-            return ( 
-            <Person 
-              name={person.name} 
-              age={person.age}
-              click={() => this.deletePersonHandler(index)}
-              change={this.nameChangedHandler} >
-                My Hobbies: Programming
-            </Person>)
+            return (
+              <Person
+                name={person.name}
+                age={person.age}
+                click={() => this.deletePersonHandler(index)}
+                key={person.id}
+                />
+               )
           })}
-      </div>           
+        </div>
       )
     }
 
@@ -67,12 +67,12 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button 
+        <button
           style={style}
           onClick={this.togglePersonsHandler}>
-            Switch Name
-        </button>       
-         {persons}
+          Switch Name
+        </button>
+        {persons}
       </div>
     );
     //return React.createElement("div", {className: "App"}, React.createElement("h1", null, "Does this work now?"));

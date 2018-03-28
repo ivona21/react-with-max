@@ -20,12 +20,25 @@ class App extends Component {
     console.log("[App.js] Inside Constructor", props);
   }
 
-  componentWillMount(){
+  componentWillMount() {
     console.log("[App.js] Inside componentWillMount");
   }
 
-  componentDidMount(){
+  componentDidMount() {
     console.log("[App.js] Inside componentDidMount");
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("[App.js] Inside shouldComponentUpdate", nextProps, nextState);
+    return true;
+  }
+
+  componentWillUpdate() {
+    console.log("[UPDATE App.js] Inside componentWillUpdate");
+  }
+
+  componentDidUpdate() {
+    console.log("[UPDATE App.js] Inside componentDidUpdate");
   }
 
   nameChangedHandler = (event, id) => {
@@ -54,13 +67,13 @@ class App extends Component {
 
   render() {
     console.log("[App.js] Inside render()");
-    let persons = null;   
+    let persons = null;
 
     if (this.state.showPersons) {
       persons = <Persons
         persons={this.state.persons}
         clicked={this.deletePersonHandler}
-        changed={this.nameChangedHandler} />;     
+        changed={this.nameChangedHandler} />;
     }
 
     return (

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Cockpit.css";
+import Aux from "../../hoc/AppAux";
 
 const cockpit = (props) => {
     const classes = [];
@@ -8,23 +9,23 @@ const cockpit = (props) => {
         btnClass = styles.Red;
     }
     if (props.personsLength <= 2) {
-      classes.push(styles.Red);
+        classes.push(styles.Red);
     }
     if (props.personsLength <= 1) {
-      classes.push(styles.Bold);
+        classes.push(styles.Bold);
     }
 
     return (
-        <div className={styles.Cockpit}>            
+        <Aux>
             <h1>{props.appTitle}</h1>
             <p className={classes.join(" ")}>This is really working!</p>
             <button
-                className={btnClass}
+                className={styles.Button + " " + btnClass}
                 onClick={props.clicked}>
                 Switch Name
             </button>
-        </div>
-        );
+        </Aux>
+    );
 }
 
 export default cockpit;
